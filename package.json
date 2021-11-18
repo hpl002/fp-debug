@@ -1,0 +1,11 @@
+{
+  "name": "fp-debug",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:hpl002/fp-debug.git",
+  "author": "Herman Stoud Platou <hsplatou@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^2.25.0"
+  }
+}
