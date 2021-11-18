@@ -6,23 +6,19 @@ var differenceInMilliseconds = require('date-fns/differenceInMilliseconds')
 const main = (state) => {
     const confirmSignees = state.donetasks.find(e => e.taskType === "sign-customer-agreement").completedAt
     const completed = state.donetasks.find(e => e.taskType === "successful-onboarding").completedAt
-
-    const final = []
-
-
-    state.donetasks.forEach(element => {
-        const simple = class {
-            constructor({ taskType, completedAt, createdAt }) {
-                this.taskType = taskType;
-                this.completedAt = completedAt;
-                this.createdAt = createdAt;
-                this.diff = differenceInMilliseconds(new Date(completedAt), new Date(createdAt))
-            }
+    
+    const simple = class {
+        constructor({ taskType, completedAt, createdAt }) {
+            this.taskType = taskType;
+            this.completedAt = completedAt;
+            this.createdAt = createdAt;
+            this.diff = differenceInMilliseconds(new Date(completedAt), new Date(createdAt))
         }
-        final.push(new simple({ ...element }))
-    });
+    }
+    
+    const final =  state.donetasks.map(e=> new simple({ ...e }))
 
-
+     
     console.log("confirm singees", confirmSignees);
     console.log("completed", completed);
     const diff = differenceInMilliseconds(new Date(completed), new Date(confirmSignees))
